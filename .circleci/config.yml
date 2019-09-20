@@ -16,7 +16,7 @@ workflows:
           requires: [orb-tools/lint]
 
       - orb-tools/publish-dev:
-          orb-name: TheoBrigitte/hello
+          orb-name: theo/hello
           orb-path: workspace/packed/orb.yml
           publish-token-variable: CIRCLECI_TOKEN
           requires: [orb-tools/pack]
