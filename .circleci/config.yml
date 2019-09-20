@@ -25,6 +25,7 @@ workflows:
           attach-workspace: true
           orb-path: workspace/packed/orb.yml
           orb-ref: theo/hello@${CIRCLE_TAG}
+          requires: [orb-tools/pack]
           filters:
             branches:
               ignore: /.*/
