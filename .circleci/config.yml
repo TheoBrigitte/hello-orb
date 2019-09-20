@@ -1,0 +1,32 @@
+version: 2.1
+
+orbs:
+  orb-tools: circleci/orb-tools@8.3.0
+
+workflows:
+  catalog_build:
+    jobs:
+      - orb-tools/lint
+
+      - orb-tools/pack:
+          source-dir: src
+          destination-orb-path: packed/orb.yml
+          workspace-path: packed/orb.yml
+          artifact-path: packed/orb.yml
+          requires: [orb-tools/lint]
+
+      - orb-tools/publish-dev:
+          orb-name: TheoBrigitte/hello
+          orb-path: workspace/packed/orb.yml
+          publish-token-variable: CIRCLECI_DEV_API_TOKEN
+          requires: [orb-tools/pack]
+
+      - orb-tools/dev-promote-prod:
+          orb-name: TheoBrigitte/hello
+          publish-token-variable: CIRCLECI_DEV_API_TOKEN
+          release: minor
+          requires: [orb-tools/publish-dev]
+          filters:
+            branches:
+              only: master
+              #ignore: /.*/
