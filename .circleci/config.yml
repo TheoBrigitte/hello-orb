@@ -14,12 +14,18 @@ workflows:
           workspace-path: packed/orb.yml
           artifact-path: packed/orb.yml
           requires: [orb-tools/lint]
+          filters:
+            tags:
+              only: /.*/
 
       - orb-tools/publish-dev:
           orb-name: theo/hello
           orb-path: workspace/packed/orb.yml
           publish-token-variable: CIRCLECI_TOKEN
           requires: [orb-tools/pack]
+          filters:
+            tags:
+              only: /.*/
 
       - orb-tools/publish:
           attach-workspace: true
