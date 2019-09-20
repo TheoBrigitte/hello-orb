@@ -18,5 +18,5 @@ workflows:
       - orb-tools/publish-dev:
           orb-name: TheoBrigitte/hello
           orb-path: workspace/packed/orb.yml
-          publish-token-variable: CIRCLECI_DEV_API_TOKEN
+          publish-token-variable: CIRCLECI_TOKEN
           requires: [orb-tools/pack]
