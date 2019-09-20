@@ -20,3 +20,13 @@ workflows:
           orb-path: workspace/packed/orb.yml
           publish-token-variable: CIRCLECI_TOKEN
           requires: [orb-tools/pack]
+
+      - orb-tools/publish:
+          attach-workspace: true
+          orb-path: workspace/packed/orb.yml
+          orb-ref: theo/hello@${CIRCLE_TAG}
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /.*/
