@@ -20,13 +20,3 @@ workflows:
           orb-path: workspace/packed/orb.yml
           publish-token-variable: CIRCLECI_DEV_API_TOKEN
           requires: [orb-tools/pack]
-
-      - orb-tools/dev-promote-prod:
-          orb-name: TheoBrigitte/hello
-          publish-token-variable: CIRCLECI_DEV_API_TOKEN
-          release: minor
-          requires: [orb-tools/publish-dev]
-          filters:
-            branches:
-              only: master
-              #ignore: /.*/
