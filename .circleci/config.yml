@@ -31,7 +31,6 @@ workflows:
               only: /.*/
 
       - orb-tools/publish:
-          attach-workspace: true
           orb-path: workspace/packed/orb.yml
           orb-ref: theo/hello@${CIRCLE_TAG}
           publish-token-variable: CIRCLECI_TOKEN
