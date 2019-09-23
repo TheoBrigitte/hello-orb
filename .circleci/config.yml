@@ -21,7 +21,7 @@ workflows:
             tags:
               only: /.*/
 
-      - orb-tools/publish:
+      - publish-dev:
           attach-workspace: true
           orb-path: workspace/packed/orb.yml
           orb-ref: theo/hello@dev:${CIRCLE_BRANCH}
@@ -33,7 +33,7 @@ workflows:
             tags:
               ingore: /.*/
 
-      - orb-tools/publish:
+      - publish:
           attach-workspace: true
           orb-path: workspace/packed/orb.yml
           orb-ref: theo/hello@${CIRCLE_TAG##v}
