@@ -21,14 +21,17 @@ workflows:
             tags:
               only: /.*/
 
-      - orb-tools/publish-dev:
-          orb-name: theo/hello
+      - orb-tools/publish:
+          attach-workspace: true
           orb-path: workspace/packed/orb.yml
+          orb-ref: theo/hello@dev:${CIRCLE_BRANCH}
           publish-token-variable: CIRCLECI_TOKEN
           requires: [orb-tools/pack]
           filters:
-            tags:
+            branches:
               only: /.*/
+            tags:
+              ingore: /.*/
 
       - orb-tools/publish:
           attach-workspace: true
