@@ -41,3 +41,4 @@ workflows:
               ignore: /.*/
             tags:
               only: /.*/
+              ignore: 3.0.0
